@@ -114,7 +114,6 @@ def clean_ascii(text):
     else:
         return None
 
-TRACK_TERMS = ['#AEW', '#AllELiteWrestling', '#AEWDark', '#AEWDynamite', '#AEWonTNT', '#WWE', '#NXT']
 TABLE_ATTRIBUTES = "created_at TIMESTAMP, id_str VARCHAR(255), text VARCHAR(255), in_reply_to VARCHAR(255), \
             was_retweet_id VARCHAR(255), was_retweet_user VARCHAR(255), \
             user_name VARCHAR(255), user_location VARCHAR(255), user_description VARCHAR(255), user_created VARCHAR(255), \
@@ -122,7 +121,8 @@ TABLE_ATTRIBUTES = "created_at TIMESTAMP, id_str VARCHAR(255), text VARCHAR(255)
             user_followers_count INT, user_friends_count INT, \
             retweet_count INT, favorites_count INT, polarity DOUBLE PRECISION, subjectivity DOUBLE PRECISION"
 
-TABLE_NAME = "dynamite24"
+TRACK_TERMS = ['#AEW', '#AllELiteWrestling', '#AEWDark', '#AEWDynamite', '#AEWonTNT', '#WWE', '#NXT']
+TABLE_NAME = "dynamite"
 
 # CONNECTION_STRING = "sqlite:///elite.db"
 # DATABASE_URL = CONNECTION_STRING
