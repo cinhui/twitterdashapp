@@ -118,7 +118,7 @@ TABLE_ATTRIBUTES = "created_at TIMESTAMP, id_str VARCHAR(255), text VARCHAR(255)
 
 # TRACK_TERMS = ['#AEW', '#AllELiteWrestling', '#AEWDark', '#AEWDynamite', '#AEWonTNT', '#WWE', '#NXT']
 TRACK_TERMS = ['#AEW', '#AllELiteWrestling', '#AEWDark', '#AEWDynamite', '#AEWonTNT']
-TABLE_NAME = "dark24_"
+TABLE_NAME = "dynamite25"
 
 # CONNECTION_STRING = "sqlite:///elite.db"
 # DATABASE_URL = CONNECTION_STRING
