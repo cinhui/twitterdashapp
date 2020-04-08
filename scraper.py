@@ -34,9 +34,6 @@ class StreamListener(tweepy.StreamListener):
         retweet_count = status.retweet_count
         favorites_count = status.favorite_count
 
-        polarity= None
-        subjectivity= None
-
         if status.coordinates:
             coords = json.dumps(coords)
 
@@ -60,14 +57,14 @@ class StreamListener(tweepy.StreamListener):
                 user_name, user_location , user_description, user_created , \
                 geo, coordinates, \
                 user_followers_count, user_friends_count, \
-                retweet_count, favorites_count, polarity, subjectivity) \
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)".format(TABLE_NAME)
+                retweet_count, favorites_count) \
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)".format(TABLE_NAME)
         val = (created_at, id_str, text, in_reply_to, \
             was_retweet_id, was_retweet_user, \
             user_name, user_location , user_description, user_created_at , \
             geo, coords, \
             followers_count, friends_count, \
-            retweet_count, favorites_count, polarity, subjectivity)
+            retweet_count, favorites_count)
         
         curr.execute(sql, val)
         conn.commit()
@@ -91,8 +88,6 @@ class StreamListener(tweepy.StreamListener):
             #     user_friends_count=friends_count,
             #     retweet_count=retweet_count,
             #     favorites_count=favorites_count,
-            #     polarity=sent.polarity,
-            #     subjectivity=sent.subjectivity,
             # ))
         # except ProgrammingError as err:
         #     print(err)
@@ -114,11 +109,12 @@ TABLE_ATTRIBUTES = "created_at TIMESTAMP, id_str VARCHAR(255), text VARCHAR(255)
             user_name VARCHAR(255), user_location VARCHAR(255), user_description VARCHAR(255), user_created VARCHAR(255), \
             geo VARCHAR(255), coordinates VARCHAR(255), \
             user_followers_count INT, user_friends_count INT, \
-            retweet_count INT, favorites_count INT, polarity DOUBLE PRECISION, subjectivity DOUBLE PRECISION"
+            retweet_count INT, favorites_count INT"
 
 TRACK_TERMS = ['#AEW', '#AllELiteWrestling', '#AEWDark', '#AEWDynamite', '#AEWonTNT', '#WWE', '#NXT']
 # TRACK_TERMS = ['#AEW', '#AllELiteWrestling', '#AEWDark', '#AEWDynamite', '#AEWonTNT']
-TABLE_NAME = "dynamite26"
+# TRACK_TERMS = ['#WWE' , '#Wrestlemania', '#Wrestlemania36']
+TABLE_NAME = "dynamite27"
 
 # CONNECTION_STRING = "sqlite:///elite.db"
 # DATABASE_URL = CONNECTION_STRING
@@ -166,8 +162,9 @@ curr.close()
 
 auth = tweepy.OAuthHandler(credentials.TWITTER_APP_KEY, credentials.TWITTER_APP_SECRET)
 auth.set_access_token(credentials.TWITTER_KEY, credentials.TWITTER_SECRET)
-api = tweepy.API(auth)
-
+# api = tweepy.API(auth)
+api = tweepy.API(auth, wait_on_rate_limit_notify=True)
+    
 stream_listener = StreamListener()
 stream = tweepy.Stream(auth=api.auth, listener=stream_listener)
-stream.filter(track=TRACK_TERMS)
+stream.filter(track=TRACK_TERMS, stall_warnings=True)
