@@ -111,10 +111,10 @@ TABLE_ATTRIBUTES = "created_at TIMESTAMP, id_str VARCHAR(255), text VARCHAR(255)
             user_followers_count INT, user_friends_count INT, \
             retweet_count INT, favorites_count INT"
 
-TRACK_TERMS = ['#AEW', '#AllELiteWrestling', '#AEWDark', '#AEWDynamite', '#AEWonTNT', '#WWE', '#NXT']
+TRACK_TERMS = ['#WatchingAEW', '#AEW', '#AllELiteWrestling', '#AEWDark', '#AEWDynamite', '#AEWonTNT', '#WWE', '#NXT']
+# TRACK_TERMS = ['#AEW', '#AllELiteWrestling', '#AEWDark', '#AEWDynamite', '#AEWonTNT', '#WWE', '#NXT']
 # TRACK_TERMS = ['#AEW', '#AllELiteWrestling', '#AEWDark', '#AEWDynamite', '#AEWonTNT']
-# TRACK_TERMS = ['#WWE' , '#Wrestlemania', '#Wrestlemania36']
-TABLE_NAME = "dynamite27"
+TABLE_NAME = "table_name"
 
 # CONNECTION_STRING = "sqlite:///elite.db"
 # DATABASE_URL = CONNECTION_STRING
